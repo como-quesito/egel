@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/egel.iml" filepath="$PROJECT_DIR$/.idea/modules/egel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/egel_main.iml" filepath="$PROJECT_DIR$/.idea/modules/egel_main.iml" group="egel" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/egel_test.iml" filepath="$PROJECT_DIR$/.idea/modules/egel_test.iml" group="egel" />
+    </modules>
+  </component>
+</project>

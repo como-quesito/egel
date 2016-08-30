@@ -1,0 +1,44 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'egel'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile('org.springframework.boot:spring-boot-devtools')
+	compile('com.vaadin:vaadin-spring-boot-starter:1.0.0')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'com.vaadin', name: 'vaadin-themes', version: '7.7.0'
+	compile("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.6.0-rc1")
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.vaadin:vaadin-bom:7.6.3"
+	}
+}
