@@ -4,14 +4,16 @@
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://d3js.org/d3.v4.js"></script>
-    <link rel="stylesheet" th:href="@{/css/hola.css}"
-          href="../../css/hola.css" />
+
+
+    <link rel="stylesheet" th:href="@{/css/hola.css}" href="../../css/hola.css" />
+
+
+
 </head>
 <body>
 <h1>Hola mundo</h1>
-<script>
-d3.select("body").append("span")
-    .text("Hello, world!");
-</script>
+<!-- Ya que en este script usamos la etiqueta boyd lo cargamos despues, de otra manera no se vera cargado -->
+<script src="../../js/hola-d3.js" th:src="@{/js/hola-d3.js}"></script>
 </body>
 </html>
