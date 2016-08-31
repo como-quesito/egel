@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <link rel="stylesheet" th:href="@{/css/hola.css}"
+          href="../../css/hola.css" />
+</head>
+<body>
+<h1>Hola mundo</h1>
+<script>
+d3.select("body").append("span")
+    .text("Hello, world!");
+</script>
+</body>
+</html>

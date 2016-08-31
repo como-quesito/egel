@@ -29,6 +29,7 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-devtools')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile('com.vaadin:vaadin-spring-boot-starter:1.0.0')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile group: 'com.vaadin', name: 'vaadin-themes', version: '7.7.0'

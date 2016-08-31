@@ -35,4 +35,9 @@ public class ControladorMongoImagen {
         response.setContentType("image/png");
         return bytes;
     }
+
+    @RequestMapping("/hola-mundo")
+    String holaMundo(){
+        return "inicio";
+    }
 }
