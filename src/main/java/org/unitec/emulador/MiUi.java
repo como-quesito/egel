@@ -1,14 +1,13 @@
 package org.unitec.emulador;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.server.FontAwesome;
-import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Random;
@@ -27,10 +26,12 @@ public class MiUi extends UI {
     String op3;
     String op4;
     TextArea label;
-    int contadora=0;
+    int segundos=0;
+    int minutos=0;
 
     int pregunta=0;
     int contador;
+    Thread t1;
 
 
     @Autowired RepositorioReactivos reactivos;
@@ -60,42 +61,17 @@ public class MiUi extends UI {
         setContent(layout);
         System.out.println("Vergas!!");
 
+//ESte sera el reloj
+        Label labello=new Label("RELOJ");
+        labello.addStyleName(ValoTheme.LABEL_COLORED);
 
 
 
 
-
-        Button button = new Button("Checar respuesta");
-
-
-        ArrayList<Reactivo> todos= (ArrayList<Reactivo>) reactivos.findByTema("A1");
-
-/**********************************************************************************************************
- Checamos si las pregunats son más de 10 para hacer el acomodado al azar
- **********************************************************************************************************/
-        if(reactivos.size()>5) {
-            Random rng = new Random(); //
-// El LinkedHashSet es para mantener el orden
-            Set<Integer> generated = new LinkedHashSet<Integer>();
-            //Aqui va el numero de reactivos a mostrarse o sea 10 preguntas
-            while (generated.size() < 5) {
-                // Aqui va el numero total de reactivos en los que debe hacerse la asignacion aleatorio
-                Integer next = rng.nextInt(reactivos.size()) + 1;
-                // Agregamos
-                generated.add(next);
-            }
-            //Acomodamos los reactivos de acuerdo a los indices generados
-            reactivosAleatorios=new ArrayList<>();
-            for (int i : generated) {
-                System.out.println( "Valor:" + i);
-                reactivosAleatorios.add(reactivos.get(i-1));
-            }
-
-            //Reasignamos el arraylist de reactivos a sólo los 10.
-            reactivos=reactivosAleatorios;
+        Button button = new Button("Checar respuesta",FontAwesome.CHECK_CIRCLE_O);
 
 
-        }
+        ArrayList<Reactivo> todos=obtenerReactivos("A1");
 
 
 
@@ -113,6 +89,12 @@ public class MiUi extends UI {
         label.setStyleName(ValoTheme.TEXTAREA_LARGE);
 
 
+//ASIGNAMOS EL RELOJ
+        layout.addComponent(labello);
+
+
+        // ASIGNAMOS LA PREGUNTA
+
         label.setValue(todos.get(0).getPregunta());
 
 
@@ -126,7 +108,7 @@ public class MiUi extends UI {
 
         button.addClickListener(click -> {
 
-                    if (pregunta < todos.size()) {
+                    if (pregunta < todos.size()-1) {
 
                         pregunta++;
 
@@ -174,32 +156,38 @@ public class MiUi extends UI {
         Label label3=new Label("El examen evalúa cada área y sub área adel EGEL  en los porcentajes oficiales");
         Label label5 =new Label("");
         principal.addComponents(bienvenido,label2,label4, label3, label5 );
-
+/*
+BOTON PARA INICIAR EXAMEN, INICIAMOS EL THREAD.
+ */
         Button boton=new Button("INICIAR EXAMEN", FontAwesome.ANGELLIST);
         boton.addStyleName(ValoTheme.BUTTON_PRIMARY);
 
 
         boton.addClickListener(click -> {
 
+            t1.start();
 
-                    Notification.show("Lo que seleccionaste es: " );
+                    Notification.show("INICIA TU EMULACIÓN DE EXAMEN! " );
             setContent(layout);
 
                 });
         principal.addComponent(boton);
 
 
-        Label labello=new Label();
 
-        Thread t1=new Thread(new Runnable() {
+
+         t1=new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true) {
 
-
-                    System.out.println("Hola "+contadora);
-                    labello.setValue("Hola "+contadora);
-                    contadora++;
+                  if(segundos>=60){
+                      segundos=0;
+                      minutos++;
+                  }
+                    System.out.println("TIEMPO TRANSCURRIDO: "+minutos+":"+segundos+" minutos");
+                    labello.setValue("TIEMPO TRANSCURRIDO: "+minutos+":"+segundos+" minutos");
+                    segundos++;
                     try {
                         Thread.sleep(1000);
 
@@ -212,11 +200,60 @@ public class MiUi extends UI {
                 }
             }
         });
-        t1.start();
+
+        String basepath = VaadinService.getCurrent()
+                .getBaseDirectory().getAbsolutePath();
 
 
-        principal.addComponent(labello);
+
+
+        ThemeResource resource = new ThemeResource("../egel.png");
+      //  Image image = new Image("Imagen de archivo ", resource);
+//PROBEMOS UN LINK
+        Link link=new Link("yo "+basepath, new ExternalResource("/hola-mundo/"));
+        link.setIcon(resource);
+
+         principal.addComponent(link);
 
         setContent(principal);
     }
+
+
+    public ArrayList<Reactivo> obtenerReactivos(String tema) {
+
+
+        ArrayList<Reactivo> reactivosAleatorios = new ArrayList<>();
+
+        ArrayList<Reactivo> todos = (ArrayList<Reactivo>) reactivos.findByTema(tema);
+
+
+/**********************************************************************************************************
+ Checamos si las pregunats son más de 10 para hacer el acomodado al azar
+ **********************************************************************************************************/
+        if (todos.size() > 5) {
+            Random rng = new Random(); //
+// El LinkedHashSet es para mantener el orden
+            Set<Integer> generated = new LinkedHashSet<Integer>();
+            //Aqui va el numero de reactivos a mostrarse o sea 10 preguntas
+            while (generated.size() < 5) {
+                // Aqui va el numero total de reactivos en los que debe hacerse la asignacion aleatorio
+                Integer next = rng.nextInt(todos.size()) + 1;
+                // Agregamos
+                generated.add(next);
+            }
+            //Acomodamos los reactivos de acuerdo a los indices generados
+            reactivosAleatorios = new ArrayList<>();
+            for (int i : generated) {
+                System.out.println("Valor:" + i);
+                reactivosAleatorios.add(todos.get(i - 1));
+            }
+
+
+        }
+        //REgresamos los 5 aleatorios
+        return reactivosAleatorios;
+
+    }
+
+
 }
