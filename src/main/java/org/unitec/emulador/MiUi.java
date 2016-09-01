@@ -44,7 +44,18 @@ public class MiUi extends UI {
         UI.getCurrent().setPollInterval( 1000 );
 
         final VerticalLayout principal = new VerticalLayout();
+
+
+
         final VerticalLayout layout=new VerticalLayout();
+
+
+        //Ponemos la imagen inicial
+        //Imagen de inicio
+
+        ThemeResource resource = new ThemeResource("../egel.png");
+        Image imagen = new Image(null, resource);
+        principal.addComponent(imagen);
         /*
            INICIAMOS ELÑ EXAMEN
          */
@@ -153,7 +164,7 @@ public class MiUi extends UI {
         Label label2= new Label();
         label2.setValue("Al final se te proporcionará una retroalimentación de como saliste  en cada área.");
         Label label4=new Label("");
-        Label label3=new Label("El examen evalúa cada área y sub área adel EGEL  en los porcentajes oficiales");
+        Label label3=new Label("El examen evalúa cada área y sub-área del EGEL  en los porcentajes oficiales");
         Label label5 =new Label("");
         principal.addComponents(bienvenido,label2,label4, label3, label5 );
 /*
@@ -207,13 +218,10 @@ BOTON PARA INICIAR EXAMEN, INICIAMOS EL THREAD.
 
 
 
-        ThemeResource resource = new ThemeResource("../egel.png");
-      //  Image image = new Image("Imagen de archivo ", resource);
 //PROBEMOS UN LINK
-        Link link=new Link("yo "+basepath, new ExternalResource("/hola-mundo/"));
-        link.setIcon(resource);
+      // Link link=new Link(null, new ExternalResource("/hola-mundo/"));
+     //  link.setIcon(resource);
 
-         principal.addComponent(link);
 
         setContent(principal);
     }
