@@ -4,13 +4,16 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.data.validator.NullValidator;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.calendar.CalendarClientRpc;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -25,9 +28,12 @@ import java.util.ArrayList;
  * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be
  * overridden to add component to the user interface and initialize non-component functionality.
  */
-@SpringUI
+//@SpringUI
 @Theme("valo")
-public class MyUI extends UI {
+public class MyUI /*extends UI */{
+    @Autowired
+    private SpringViewProvider viewProvider;
+
     String op1;
     String op2;
     String op3;
@@ -38,7 +44,7 @@ TextArea label;
     int contador;
     @Autowired
     RepositorioReactivos reactivos;
-    @Override
+    //@Override
     protected void init(VaadinRequest vaadinRequest) {
 
         /*
@@ -59,7 +65,15 @@ TextArea label;
         
         setContent(layout);
         System.out.println("Vergas!!");
-        */
+
+
+
+
+
+
+
+
+
         final VerticalLayout layout = new VerticalLayout();
 
         Button button = new Button("Checar respuesta");
@@ -127,6 +141,8 @@ TextArea label;
 
 
         setContent(layout);
+
+       */
     }
 
 
