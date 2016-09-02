@@ -33,6 +33,42 @@ public class MiUi extends UI {
     int contador;
     Thread t1;
 
+    //calificaciones
+    float califa1;
+    int buenasa1;
+
+    float calia2;
+    int buenasa2;
+
+    float califb1;
+    int buenasb1;
+
+    float califb2;
+    int buenasb2;
+
+    float califb3;
+    int buenasb3;
+
+    float califb4;
+    int buenasb4;
+
+    float califc1;
+    int buenasc1;
+
+    float califc2;
+    int buienasc2;
+
+    float califd1;
+    int buenasd1;
+
+    float califd2;
+    int buenasd2;
+    float califd3;
+    int buenasd3;
+
+    float califtotal;
+
+
 
     @Autowired RepositorioReactivos reactivos;
   // private Grid grid = new Grid();
@@ -82,7 +118,7 @@ public class MiUi extends UI {
         Button button = new Button("Checar respuesta",FontAwesome.CHECK_CIRCLE_O);
 
 
-        ArrayList<Reactivo> todos=obtenerReactivos("A1");
+        ArrayList<Reactivo> todos=obtenerReactivos("B4");
 
 
 
@@ -118,12 +154,29 @@ public class MiUi extends UI {
         button.setStyleName(ValoTheme.BUTTON_PRIMARY);
 
         button.addClickListener(click -> {
+//Antes checamos la respuesta!!!! si no , nos movera hacia adelante a la siguiente pregunta
+                    //Checamos la pregunta
 
-                    if (pregunta < todos.size()-1) {
+            if(checarRespuesta(todos.get(pregunta), todos.get(pregunta).getTema(),single)){
+                Notification.show("CORRECTO" );
+            }else{
+                Notification.show("MAL!!! IN-CO-RREC-TO" );
+            }
 
-                        pregunta++;
+            pregunta++;
 
-                        Notification.show("Lo que seleccionaste es: " + single.isSelected("Sola"));
+
+                    if (pregunta < todos.size()) {
+
+
+
+
+
+
+
+
+
+
 
                         op1 = todos.get(pregunta).getOpciones().get(0).getTitulo();
                         op2 = todos.get(pregunta).getOpciones().get(1).getTitulo();
@@ -136,7 +189,24 @@ public class MiUi extends UI {
                         single.removeAllItems();
                         single.addItems(op1, op2, op3, op4);
 
+
+
+
                     }
+                    else{
+                        layout.removeAllComponents();
+
+                        Label resultadoA1=new Label("Resultado");
+                        Label resultadoA2=new Label("Resltado");
+                        resultadoA1.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        resultadoA2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        layout.addComponent(resultadoA1);
+                        layout.addComponent(resultadoA2);
+                    }
+
+
+
+
                 }
         );
 
@@ -262,6 +332,40 @@ BOTON PARA INICIAR EXAMEN, INICIAMOS EL THREAD.
         return reactivosAleatorios;
 
     }
+
+//metodo para checar la respuesta de x pregunta
+    public boolean checarRespuesta(Reactivo pregunta, String tema, OptionGroup single){
+        boolean isCorrecto=false;
+        String laCorrecta="nada";
+
+        //Chwecamos de la pregunta actual cual es la correcta
+        for(Opcion o: pregunta.getOpciones()){
+            if(o.isAcierto()){
+                laCorrecta=    o.getTitulo();
+                break;
+            }
+        }
+        //Checamos la que el usduario selecciono y la probamos con la correcta
+        if(single.isSelected(laCorrecta)){
+
+
+
+            //AQUI VIENE LO BUENOOOOOO LA EVALUACIOOOOOOOOON
+
+
+
+            isCorrecto= true;
+        }
+        else{
+            isCorrecto=false;
+        }
+
+        return isCorrecto;
+    }
+
+
+
+
 
 
 }
