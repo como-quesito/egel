@@ -37,7 +37,7 @@ public class MiUi extends UI {
     float califa1;
     int buenasa1;
 
-    float calia2;
+    float califa2;
     int buenasa2;
 
     float califb1;
@@ -56,7 +56,7 @@ public class MiUi extends UI {
     int buenasc1;
 
     float califc2;
-    int buienasc2;
+    int buenasc2;
 
     float califd1;
     int buenasd1;
@@ -117,8 +117,10 @@ public class MiUi extends UI {
 
         Button button = new Button("Checar respuesta",FontAwesome.CHECK_CIRCLE_O);
 
-
-        ArrayList<Reactivo> todos=obtenerReactivos("B4");
+/* ******************************************************************************************************************************************************************************************************
+GENERAR EXAMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEN
+ ********************************************************************************************************************************************************************************************************/
+        ArrayList<Reactivo> todos=generadorEXAMEN();
 
 
 
@@ -152,9 +154,9 @@ public class MiUi extends UI {
 
         // Java 8
         button.setStyleName(ValoTheme.BUTTON_PRIMARY);
-
+//***********************************************************************************************************************************************************************************************************
         button.addClickListener(click -> {
-//Antes checamos la respuesta!!!! si no , nos movera hacia adelante a la siguiente pregunta
+//Antes checamos la respuesta!!!! si no , nos movera hacia adelante a la siguiente pregunta********************************************************************************************************************
                     //Checamos la pregunta
 
             if(checarRespuesta(todos.get(pregunta), todos.get(pregunta).getTema(),single)){
@@ -195,13 +197,130 @@ public class MiUi extends UI {
                     }
                     else{
                         layout.removeAllComponents();
+                         //RESPUestas
 
-                        Label resultadoA1=new Label("Resultado");
-                        Label resultadoA2=new Label("Resltado");
-                        resultadoA1.setStyleName(ValoTheme.LABEL_SUCCESS);
-                        resultadoA2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        float porcientoa1=(7.2f*buenasa1)/5;
+                        califa1=(buenasa1/5.0f)*10;
+
+                        float porcientoa2=(6.1f*buenasa2)/5;
+                        califa2=(buenasa2/5.0f)*10;
+
+
+                        float porcientob1=(9.4f*buenasb1)/5;
+                        califb1=(buenasb1/5.0f)*10;
+
+                        float porcientob2=(22.4f*buenasb2)/5;
+                        califb2=(buenasb2/5.0f)*10;
+
+                        float porcientob3=(3.9f*buenasb3)/5;
+                        califb3=(buenasb3/5.0f)*10;
+
+                        float porcientob4=(5.0f*buenasb4)/5;
+                        califb4=(buenasb4/5.0f)*10;
+
+                        float porcientoc1=(5.5f*buenasc1)/5;
+                        califc1=(buenasc1/5.0f)*10;
+
+                        float porcientoc2=(8.8f*buenasc2)/5;
+                        califc2=(buenasc2/5.0f)*10;
+
+                        float porcientod1=(8.8f*buenasd1)/5;
+                        califd1=(buenasd1/5.0f)*10;
+
+                        float porcientod2=(12.2f*buenasd2)/5;
+                        califd2=(buenasd2/5.0f)*10;
+
+                        float porcientod3=(10.5f*buenasd3)/5;
+                        califd3=(buenasd3/5.0f)*10;
+
+                        Label resultadoA1=new Label("TEMA A1. Porcentaje CENEVAL: 7.2. Porcentaje A1 obtenido: "+porcientoa1+" Calificacion obtenida: "+califa1);
+                        Label resultadoA2=new Label("TEMA A2. Porcentaje CENEVAL: 6.1. Porcentaje A2 obtenido: "+porcientoa2+" Calificacion obtenida: "+califa2);
+                        Label resultadoB1=new Label("TEMA B1. Porcentaje CENEVAL: 9.4. Porcentaje B1 obtenido: "+porcientob1+" Calificacion obtenida: "+califb1);
+                        Label resultadoB2=new Label("TEMA B2. Porcentaje CENEVAL: 22.4.Porcentaje B2 obtenido: "+porcientob2+" Calificacion obtenida: "+califb2);
+                        Label resultadoB3=new Label("TEMA B3. Porcentaje CENEVAL: 3.9. Porcentaje B3 obtenido: "+porcientob3+" Calificacion obtenida: "+califb3);
+                        Label resultadoB4=new Label("TEMA B4. Porcentaje CENEVAL: 5.0. Porcentaje B4 obtenido: "+porcientob4+" Calificacion obtenida: "+califb4);
+                        Label resultadoC1=new Label("TEMA C1. Porcentaje CENEVAL: 5.5. Porcentaje C1 obtenido: "+porcientoc1+" Calificacion obtenida: "+califc1);
+                        Label resultadoC2=new Label("TEMA C2. Porcentaje CENEVAL: 8.8. Porcentaje C2 obtenido: "+porcientoc2+" Calificacion obtenida: "+califc2);
+                        Label resultadoD1=new Label("TEMA D1. Porcentaje CENEVAL: 8.8. Porcentaje D1 obtenido: "+porcientod1+" Calificacion obtenida: "+califd1);
+                        Label resultadoD2=new Label("TEMA D2. Porcentaje CENEVAL: 12.2. Porcentaje D2 obtenido: "+porcientod2+" Calificacion obtenida: "+califd2);
+                        Label resultadoD3=new Label("TEMA D3. Porcentaje CENEVAL: 10.5. Porcentaje D3 obtenido: "+porcientod3+" Calificacion obtenida: "+califd3);
+
+                         if(califa1>=6){
+                             resultadoA1.setStyleName(ValoTheme.LABEL_SUCCESS);
+                         }else{
+                             resultadoA1.setStyleName(ValoTheme.LABEL_FAILURE);
+                         }
+
+                        if(califa2>=6){
+                            resultadoA2.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoA2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+
+                        if(califb1>=6){
+                            resultadoB1.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoB1.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+                        if(califb2>=6){
+                            resultadoB2.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoB2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+                        if(califb3>=6){
+                            resultadoB3.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoB3.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+                        if(califb4>=6){
+                            resultadoB4.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoB4.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+                        if(califc1>=6){
+                            resultadoC1.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoC1.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+                        if(califc2>=6){
+                            resultadoC2.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoC2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+
+                        if(califd1>=6){
+                            resultadoD1.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoD1.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+
+                        if(califd2>=6){
+                            resultadoD2.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoD2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+                        if(califd3>=6){
+                            resultadoD3.setStyleName(ValoTheme.LABEL_SUCCESS);
+                        }else{
+                            resultadoD3.setStyleName(ValoTheme.LABEL_FAILURE);
+                        }
+
+
+                      //  resultadoA2.setStyleName(ValoTheme.LABEL_FAILURE);
+                        Label resultadoTiempo=new Label("TIEMPO ESTIMADO PARA EL EXAMEN: 110 MINUTOS, TIEMPO QUE TARDASTE: "+minutos+":"+segundos+" minutos");
+                        resultadoTiempo.setStyleName(ValoTheme.LABEL_LARGE);
+                        layout.addComponent(resultadoTiempo);
                         layout.addComponent(resultadoA1);
                         layout.addComponent(resultadoA2);
+                        layout.addComponent(resultadoB1);
+                        layout.addComponent(resultadoB2);
+                        layout.addComponent(resultadoB3);
+                        layout.addComponent(resultadoB4);
+                        layout.addComponent(resultadoC1);
+                        layout.addComponent(resultadoC2);
+                        layout.addComponent(resultadoD1);
+                        layout.addComponent(resultadoD2);
+                        layout.addComponent(resultadoD3);
                     }
 
 
@@ -228,11 +347,11 @@ public class MiUi extends UI {
         principal.setMargin(true);
         Label bienvenido=new Label();
 
-        bienvenido.setValue("Bienvenidos al emulador del CENEVAL, el examen consta de un total de "+reactivos.findAll().size()+" reactivos. Una vez " +
+        bienvenido.setValue("Bienvenidos al emulador del CENEVAL, el examen consta de un total de "+todos.size()+"  REACTIVOS. El tiempo total del examen es de 110 MINUTOS. Una vez " +
                 "que inicies el examen no podrás pausarlo.");
         bienvenido.addStyleName(ValoTheme.LABEL_BOLD);
         Label label2= new Label();
-        label2.setValue("Al final se te proporcionará una retroalimentación de como saliste  en cada área.");
+        label2.setValue(" Al final se te mostrará retroalimentación de tu evaluación, asi como del tiempo que tardaste en tu examen.");
         Label label4=new Label("");
         Label label3=new Label("El examen evalúa cada área y sub-área del EGEL  en los porcentajes oficiales");
         Label label5 =new Label("");
@@ -297,6 +416,34 @@ BOTON PARA INICIAR EXAMEN, INICIAMOS EL THREAD.
     }
 
 
+
+
+    ArrayList<Reactivo> generadorEXAMEN(){
+        ArrayList<Reactivo> bancoReactivos=new ArrayList<>();
+
+        bancoReactivos.addAll(obtenerReactivos("A1"));
+        bancoReactivos.addAll(obtenerReactivos("A2"));
+        bancoReactivos.addAll(obtenerReactivos("B1"));
+        bancoReactivos.addAll(obtenerReactivos("B2"));
+        bancoReactivos.addAll(obtenerReactivos("B3"));
+        bancoReactivos.addAll(obtenerReactivos("B4"));
+        bancoReactivos.addAll(obtenerReactivos("C1"));
+        bancoReactivos.addAll(obtenerReactivos("C2"));
+        bancoReactivos.addAll(obtenerReactivos("D1"));
+        bancoReactivos.addAll(obtenerReactivos("D2"));
+        bancoReactivos.addAll(obtenerReactivos("D3"));
+
+
+  return  bancoReactivos;
+
+    }
+
+
+    /************************************************************************************************************************
+     *
+     * @param tema
+     * @return
+     ****************************************************************************************************/
     public ArrayList<Reactivo> obtenerReactivos(String tema) {
 
 
@@ -351,6 +498,52 @@ BOTON PARA INICIAR EXAMEN, INICIAMOS EL THREAD.
 
 
             //AQUI VIENE LO BUENOOOOOO LA EVALUACIOOOOOOOOON
+              switch (tema) {
+                  case "A1": {
+                      buenasa1++;
+                      break;
+                  }
+                  case "A2": {
+                      buenasa2++;
+                      break;
+                  }
+                  case "B1": {
+                      buenasb1++;
+                      break;
+                  }
+                  case "B2": {
+                    buenasb2++;
+                      break;
+                  }
+                  case "B3":{
+                      buenasb3++;
+                      break;
+                  }
+                  case "B4":{
+                      buenasb4++;
+                      break;
+                  }
+                  case "C1":{
+                      buenasc1++;
+                      break;
+                  }
+                  case "C2":{
+                      buenasc2++;
+                      break;
+                  }
+                  case "D1":{
+                      buenasd1++;
+                      break;
+                  }
+                  case "D2":{
+                      buenasd2++;
+                      break;
+                  }
+                  case "D3":{
+                      buenasd3++;
+                      break;
+                  }
+              }// termina el buen switch
 
 
 
