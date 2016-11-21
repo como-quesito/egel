@@ -52,6 +52,7 @@ GUARDAR IMAGEN ELN MONGODB
         String nombre=file.getOriginalFilename();
         String prefijo="";
         DateTime date=new DateTime();
+        ;
         int dia=  date.getDayOfYear();
         int segundo=  date.getSecondOfDay();
         long tamano= file.getSize();
@@ -68,9 +69,10 @@ GUARDAR IMAGEN ELN MONGODB
             prefijo="dia"+dia+"segundo"+segundo;
             //   System.out.println("nombre de archivo:"+fileName);
             //Guardamos imagen, si es que hay
-           // gridFsTemplate.store(inputStream,prefijo+nombre,file.getContentType());
-
-
+        // gridFsTemplate.store(inputStream,prefijo+nombre,file.getContentType());
+              //Lo impresionante aqui es que el repositorio tambien tiene la opcion para
+            //guardar un archivo!!!
+              grid.store(inputStream,prefijo+nombre,file.getContentType());
         }
         System.out.println("El nombre de archivaldo es:" + nombre + " el tamaño del archivo esta:" + tamano + " se guardo como: " + prefijo + nombre);
 
