@@ -72,7 +72,7 @@ GUARDAR IMAGEN ELN MONGODB
         // gridFsTemplate.store(inputStream,prefijo+nombre,file.getContentType());
               //Lo impresionante aqui es que el repositorio tambien tiene la opcion para
             //guardar un archivo!!!
-              grid.store(inputStream,prefijo+nombre,file.getContentType());
+             // grid.store(inputStream,prefijo+nombre,file.getContentType());
         }
         System.out.println("El nombre de archivaldo es:" + nombre + " el tamaño del archivo esta:" + tamano + " se guardo como: " + prefijo + nombre);
 
