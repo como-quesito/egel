@@ -1,9 +1,11 @@
 package org.unitec.emulador;
 
+import java.io.Serializable;
+
 /**
  * Created by campitos on 21/08/15.
  */
-public class Opcion {
+public class Opcion implements Serializable{
 
     String titulo;
     boolean acierto;

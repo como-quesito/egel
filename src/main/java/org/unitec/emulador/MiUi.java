@@ -8,10 +8,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by campitos on 30/08/16.
@@ -367,7 +364,16 @@ BOTON PARA INICIAR EXAMEN, INICIAMOS EL THREAD.
 
             t1.start();
 
-                    Notification.show("INICIA TU EMULACIÓN DE EXAMEN! " );
+            //GENERAMOS EL ARCHIVALDOOOOOO
+           ArrayList<Reactivo> reactivitos= (ArrayList<Reactivo>) reactivos.findAll();
+                   PersistenciaReactivos persistenciaReactivos=new PersistenciaReactivos();
+            try {
+                persistenciaReactivos.guardar(reactivitos);
+                System.out.println("***************************Se guardaron todos!!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Notification.show("INICIA TU EMULACIÓN DE EXAMEN! " );
             setContent(layout);
 
                 });

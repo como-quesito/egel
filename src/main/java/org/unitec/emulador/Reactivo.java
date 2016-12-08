@@ -2,12 +2,13 @@ package org.unitec.emulador;
 
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by campitos on 21/08/15.
  */
-public class Reactivo {
+public class Reactivo implements Serializable {
     @Id
     String id;
 
