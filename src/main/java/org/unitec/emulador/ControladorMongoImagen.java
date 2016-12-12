@@ -46,7 +46,7 @@ public class ControladorMongoImagen {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/mensaje-mongo",
+    @RequestMapping(value = "/mensaje",
             method = RequestMethod.POST, headers = {"Accept=application/json"})
     @ResponseBody
     String guardarRest(@RequestBody String json) throws Exception {
@@ -70,4 +70,6 @@ public class ControladorMongoImagen {
         /// servicio.agregarMensaje(mm);
         return maper.writeValueAsString(map);
     }
+
+
 }
